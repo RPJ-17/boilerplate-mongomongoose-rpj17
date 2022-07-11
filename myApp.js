@@ -5,7 +5,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const personSchema = mongoose.Schema({
   name: String,
   age: Number,
-  favoriteFoods: Array
+  favoriteFoods: [String]
 });
 
 let Person;
@@ -55,12 +55,16 @@ const findPersonById = (personId, done) => {
   });
 };
 
-//findPersonById('62cb6d672a1a0ed024336a98', (err, doc) => console.log(err, doc)); // this works, but i don't see the other records being created
-
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-
-  done(null /*, data*/);
+  Person.findById(personId, (err, person) => {
+    if (err) return console.log(err);
+    person.favoriteFoods.push(foodToAdd);
+    person.save((err, updatedPerson) => {
+      if (err) return console.log(err);
+      done(null, updatedPerson);
+    });
+  });
 };
 
 const findAndUpdate = (personName, done) => {
