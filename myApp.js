@@ -4,19 +4,9 @@ let validator = require('validator')
 mongoose.connect(process.env.MONGO_URI);
 
 const personSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    default: 'anonymous'
-  },
-  age: {
-    type: Number,
-    required: true
-  },
-  favoriteFoods: {
-    type: Array
-  }
+  name: String,
+  age: Number,
+  favoriteFoods: Array
 });
 
 let Person;
@@ -65,6 +55,8 @@ const findPersonById = function(personId, done) {
     done(null, data);
   });
 };
+
+// findPersonById('62cb6d672a1a0ed024336a98', (err, doc) => console.log(err, doc)); // this works, but i don't see the other records being created
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
