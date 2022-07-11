@@ -1,6 +1,5 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-let validator = require('validator')
 mongoose.connect(process.env.MONGO_URI);
 
 const personSchema = mongoose.Schema({
@@ -49,8 +48,8 @@ const findOneByFood = (food, done) => {
   })
 };
 
-const findPersonById = function(personId, done) {
-  Person.findById(personId, function (err, data) {
+const findPersonById = (personId, done) => {
+  Person.findById(personId, (err, data) => {
     if (err) return console.log(err);
     done(null, data);
   });
