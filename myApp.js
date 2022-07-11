@@ -99,7 +99,7 @@ const queryChain = (done) => {
     .select({age: 0})
     .exec((err, data) => {
       if (err) return console.log(err);
-      //done(null, data);
+      done(null, data);
     });
 };
 
