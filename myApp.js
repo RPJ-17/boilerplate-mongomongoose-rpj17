@@ -56,7 +56,7 @@ const findPersonById = function(personId, done) {
   });
 };
 
-findPersonById('62cb6d672a1a0ed024336a98', (err, doc) => console.log(err, doc)); // this works, but i don't see the other records being created
+//findPersonById('62cb6d672a1a0ed024336a98', (err, doc) => console.log(err, doc)); // this works, but i don't see the other records being created
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
